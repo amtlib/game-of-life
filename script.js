@@ -22,7 +22,21 @@ function setup(){
     }
     //next board
     next = board.slice();
+init();
+}
+function init(){
+    //fills grid random values (alive or death)
 
+    for(var i = 0;i<columns;i++){
+        for(var j = 0;j<rows;j++){
+            //border's cells are always death
+            if(i==0 || j==0 || i == columns - 1 || j == rows - 1){
+                board[i][j].alive = false;
+            }else{
+                board[i][j].alive = random() > 0.5 ? true : false;
+            }
+        }
+    }
 }
 function draw(){
     background('#212121');
