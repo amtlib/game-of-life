@@ -2,6 +2,10 @@ var columns, rows;
 var board;
 var next;
 var cell_size = 10;
+var running = false;
+document.getElementsByTagName('input')[0].addEventListener('change', function () {
+    running = !running;
+});
 
 function setup() {
     createCanvas(800, 800);
@@ -27,7 +31,21 @@ function setup() {
             next[i][j] = new Cell(i, j, cell_size);
         }
     }
-    init();
+    //init();
+}
+
+function mousePressed() {
+    //console.log('mouse pressed');
+    for (var i = 1; i < columns - 1; i++) {
+        for (var j = 1; j < rows - 1; j++) {
+            if (mouseX >= board[i][j].x * board[i][j].size && mouseX < board[i][j].x * board[i][j].size + board[i][j].size) {
+                if (mouseY >= board[i][j].y * board[i][j].size && mouseY < board[i][j].y * board[i][j].size + board[i][j].size) {
+                    console.log(board[i][j]);
+                    board[i][j].alive = true;
+                }
+            }
+        }
+    }
 }
 
 function init() {
@@ -41,12 +59,16 @@ function init() {
 }
 
 function draw() {
+    frameRate(60);
     background('#212121');
-    check();
     for (var i = 0; i < columns; i++) {
         for (var j = 0; j < rows; j++) {
             board[i][j].draw_me();
         }
+    }
+    if (running) {
+        frameRate(2);
+        check();
     }
 }
 
