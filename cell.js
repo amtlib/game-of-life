@@ -6,10 +6,10 @@ function Cell(x, y, size) {
     this.alive_neighbors = 0;
     this.draw_me = function () {
         noFill();
+        //if cell is alive - fill it with white color
         if (this.alive) {
             fill('#fff');
         }
-        //noStroke();
         rect(this.x * cell_size, this.y * cell_size, this.size, this.size);
     };
 }
