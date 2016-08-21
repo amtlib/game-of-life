@@ -1,6 +1,5 @@
-function Cell(){
-    this.size = 10;
+function Cell(x, y, size){
     this.x = x;
     this.y = y;
-
+    this.size = size;
 }
