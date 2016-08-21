@@ -12,6 +12,7 @@ document.querySelector('input[type="range"]').addEventListener('input', function
     console.log('change');
     game_speed = parseInt(document.querySelector('input[type="range"]').value);
 });
+document.getElementById('random_button').addEventListener('click', init);
 
 function setup() {
     createCanvas(800, 800);
