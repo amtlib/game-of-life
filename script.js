@@ -4,12 +4,10 @@ var next;
 var cell_size = 10;
 var running = false;
 var game_speed = 2;
-
 document.querySelector('input[type="checkbox"]').addEventListener('change', function () {
     running = !running;
 });
-document.querySelector('input[type="range"]').addEventListener('input', function(){
-    console.log('change');
+document.querySelector('input[type="range"]').addEventListener('input', function () {
     game_speed = parseInt(document.querySelector('input[type="range"]').value);
 });
 document.getElementById('random_button').addEventListener('click', init);
@@ -42,12 +40,10 @@ function setup() {
 }
 
 function mousePressed() {
-    //console.log('mouse pressed');
     for (var i = 1; i < columns - 1; i++) {
         for (var j = 1; j < rows - 1; j++) {
             if (mouseX >= board[i][j].x * board[i][j].size && mouseX < board[i][j].x * board[i][j].size + board[i][j].size) {
                 if (mouseY >= board[i][j].y * board[i][j].size && mouseY < board[i][j].y * board[i][j].size + board[i][j].size) {
-                    console.log(board[i][j]);
                     board[i][j].alive = true;
                 }
             }
@@ -76,10 +72,10 @@ function draw() {
     if (running) {
         frameRate(game_speed);
         check();
-    }else{
+    }
+    else {
         frameRate(120);
     }
-
 }
 
 function check() {
