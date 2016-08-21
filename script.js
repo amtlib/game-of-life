@@ -3,8 +3,14 @@ var board;
 var next;
 var cell_size = 10;
 var running = false;
-document.getElementsByTagName('input')[0].addEventListener('change', function () {
+var game_speed = 2;
+
+document.querySelector('input[type="checkbox"]').addEventListener('change', function () {
     running = !running;
+});
+document.querySelector('input[type="range"]').addEventListener('input', function(){
+    console.log('change');
+    game_speed = parseInt(document.querySelector('input[type="range"]').value);
 });
 
 function setup() {
@@ -59,7 +65,7 @@ function init() {
 }
 
 function draw() {
-    frameRate(60);
+    //frameRate(game_speed);
     background('#212121');
     for (var i = 0; i < columns; i++) {
         for (var j = 0; j < rows; j++) {
@@ -67,9 +73,12 @@ function draw() {
         }
     }
     if (running) {
-        frameRate(2);
+        frameRate(game_speed);
         check();
+    }else{
+        frameRate(120);
     }
+
 }
 
 function check() {
